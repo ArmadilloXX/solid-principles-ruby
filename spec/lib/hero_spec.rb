@@ -13,6 +13,10 @@ describe Hero do
       expect(hero.health).to eq(10)
     end
 
+    it "has default stealth of 1" do
+      expect(hero.stealth).to eq(1)
+    end
+
     it "has default gold of 0" do
       expect(hero.gold).to eq(0)
     end
@@ -66,6 +70,16 @@ describe Hero do
       expect(attack_action).to receive(:activate)
       hero.activate_action :attack, monster
     end
+  end
 
+  describe 'flee state' do
+    it "doesn't fled when initialized" do
+      expect(hero.fled?).to eq(false)
+    end
+
+    it "flees from the battle" do
+      hero.flee
+      expect(hero.fled?).to eq(true)
+    end
   end
 end
