@@ -8,6 +8,8 @@ describe AttackAction do
   let(:dicepool) { double("dicepool") }
   let(:monster) { double('monster', damage: 4, toughness: 2, kill: nil ) }
 
+  it_behaves_like "action"
+
   describe 'effect' do
 
     before do
