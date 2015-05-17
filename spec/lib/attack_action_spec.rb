@@ -4,12 +4,12 @@ require_relative '../../lib/attack_action'
 describe AttackAction do
 
   let(:hero) { double("hero", strength: 3, gain_exp: nil, gain_gold: nil, damage: nil ) }
-  let(:action) { AttackAction.new hero, dicepool  }
+  let(:action) { AttackAction.new hero }
   let(:dicepool) { double("dicepool") }
   let(:monster) { double('monster', damage: 4, toughness: 2, kill: nil ) }
 
+  it_behaves_like "actionable"
   it_behaves_like "action"
-  it_behaves_like "subaction"
 
   it "has strength as an attribute" do
     expect(action.attribute).to eq(:strength)
@@ -18,16 +18,20 @@ describe AttackAction do
   it "has toughness as an difficulty" do
     expect(action.difficulty).to eq(:toughness)
   end
+
   describe 'effect' do
 
     before do
+      allow(Dicepool).to receive(:new).and_return(dicepool)
       allow(dicepool).to receive(:skill_check) { true }
     end
+
     after do
       action.activate(monster)
     end
     
     context "success" do
+
       it 'kills monster' do
         expect(monster).to receive(:kill)
       end
