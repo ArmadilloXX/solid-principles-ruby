@@ -58,7 +58,7 @@ describe Hero do
   end
 
   describe "attack" do
-    let(:attack_action) { double('attack_action') }
+    let(:attack_action) { double('attack_action', assign_owner: nil) }
     let(:hero) { Hero.new actions: {attack: attack_action} } 
 
     it "has attack action" do

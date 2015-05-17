@@ -33,12 +33,20 @@ class Hero
     @exp += amount
   end
 
+  def dead?
+    @health <= 0
+  end
+
   def fled?
     @fled
   end
 
   def flee
     @fled = true
+  end
+
+  def reset_flee
+    @fled = false
   end
 
 
