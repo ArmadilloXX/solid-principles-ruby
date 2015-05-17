@@ -9,6 +9,7 @@ describe AttackAction do
   let(:monster) { double('monster', damage: 4, toughness: 2, kill: nil ) }
 
   it_behaves_like "action"
+  it_behaves_like "subaction"
 
   it "has strength as an attribute" do
     expect(action.attribute).to eq(:strength)
@@ -45,10 +46,4 @@ describe AttackAction do
       end
     end
   end
-
-  it 'has an owner' do 
-    expect(action.owner).to eq(hero)
-  end
-
-
 end

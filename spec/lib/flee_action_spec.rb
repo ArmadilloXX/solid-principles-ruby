@@ -9,6 +9,16 @@ describe FleeAction do
   let(:dicepool) { double("dicepool") }
   let(:monster) { double('monster', notice: 2, damage: 4, toughness: 2, kill: nil ) }
 
+  it_behaves_like "action"
+  it_behaves_like "subaction"
+
+  it "has stealth as an attribute" do
+    expect(action.attribute).to eq(:stealth)
+  end
+
+  it "has notice as an difficulty" do
+    expect(action.difficulty).to eq(:notice)
+  end
   describe 'effect' do
 
     context "success" do
@@ -27,23 +37,4 @@ describe FleeAction do
       end
     end
   end
-
-
-  describe 'activate' do
-
-    it "makes stealth check against target notice" do
-      expect(dicepool).to receive(:skill_check).with(hero.stealth, monster.notice)
-      action.activate(monster)
-    end
-  end
-  
-  it "responds to activate message" do
-    expect(action).to respond_to(:activate)
-  end
-
-  it 'has an owner' do 
-    expect(action.owner).to eq(hero)
-  end
-
-
 end
