@@ -17,4 +17,22 @@ describe Action do
 
   it_behaves_like "action"
 
+  it "requires action attributes to be implemented" do
+    expect { Action.new hero, dicepool }.to raise_exception
+  end
+
+  describe 'activate' do
+    it "sends success message if skill check is successful" do
+      allow(dicepool).to receive(:skill_check) { true }
+      expect(action).to receive(:success)
+      action.activate(monster)
+    end
+
+    it "sends failure message if skill check is failed" do
+      allow(dicepool).to receive(:skill_check) { false }
+      expect(action).to receive(:failure)
+      action.activate(monster)
+    end
+  end
+
 end

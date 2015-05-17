@@ -19,10 +19,10 @@ class Action
     end
   end
 
-  def success
+  def success(target)
   end
 
-  def failure
+  def failure(target)
   end
 
 end
