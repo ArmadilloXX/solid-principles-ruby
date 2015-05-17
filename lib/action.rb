@@ -9,6 +9,10 @@ module Actionable
     action_attributes
   end
 
+  def assign_owner(owner)
+    @owner = owner
+  end
+
   def action_attributes
     raise "You MUST initialize @attribute and @difficulty"
   end

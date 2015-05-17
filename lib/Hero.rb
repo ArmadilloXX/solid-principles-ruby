@@ -6,9 +6,15 @@ class Hero
     @health = attr[:health] || 10
     @stealth = attr[:stealth] || 1
     @actions = attr[:actions] || {}
+
+    own_actions
     @gold = 0
     @exp = 0
     @fled = false
+  end
+
+  def own_actions
+    @actions.each_pair { |key, action| action.assign_owner(self) }
   end
 
   def activate_action (action_name, target)

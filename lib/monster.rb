@@ -14,7 +14,7 @@ class Monster
     @dead
   end
 
-  def kill!
+  def kill
     @dead = true
   end
   
